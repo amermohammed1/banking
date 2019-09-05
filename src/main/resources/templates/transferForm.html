@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transfer</title>
+</head>
+
+<body>
+<th:block th:include="/header"></th:block>
+
+<h2>Transfer Money</h2>
+
+
+<div th:if="${errorMessage!=null}"
+     style="color:red;font-style:italic" th:utext="${errorMessage}">..</div>
+
+<form th:action="@{/processTransfer}" th:object="${transferFormBean}" method="POST">
+    <table>
+
+
+
+        <tr>
+            <td>From Bank Account Id</td>
+            <td><input type="text" th:field="*{fromAccountId}"/> (LEAVE THIS EMPTY for CREDIT or DEBIT operations)</td>
+        </tr>
+        <tr>
+            <td>To Bank Account Id*</td>
+            <td><input type="text" th:field="*{toAccountId}"/></td>
+        </tr>
+        <tr>
+            <td>Amount*</td>
+            <td><input type="text" th:field="*{transferAmount}" />(Use Negative for DEBIT operations)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Send"/></td>
+        </tr>
+    </table>
+</form>
+</html>
